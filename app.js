@@ -10,18 +10,26 @@ const removeItemBtn = document.querySelector('#removeItemBtn');
 const listItems = document.getElementsByTagName('li');
 
 myParagraph.title = 'A list description';
-// loop through each item in listItems
-for (let i = 0; i < listItems.length; i += 1) {
-  // event listens for mouse over and transforms text to capitals
-  listItems[i].addEventListener('mouseover', () => {
-    listItems[i].textContent = listItems[i].textContent.toUpperCase();
-  });
 
-  // event listens for mouse out and transforms text back to lowercase
-  listItems[i].addEventListener('mouseout', () => {
-    listItems[i].textContent = listItems[i].textContent.toLowerCase();
-  });
-}
+listDiv.addEventListener('mouseover', (event) => {
+  // only target events with LI tag
+  if (event.target.tagName === 'LI') {
+    // event listens for mouse over and transforms text to capitals
+    event.target.textContent = event.target.textContent.toUpperCase();
+  }
+});
+
+listDiv.addEventListener('mouseout', (event) => {
+  // only target events with LI tag
+  if (event.target.tagName === 'LI') {
+    // event listens for mouse out and transforms text back to lowercase
+    event.target.textContent = event.target.textContent.toLowerCase();
+  }
+});
+
+// document.addEventListener('click', (event) => {
+//   console.log(event.target);
+// });
 
 // change the heading text color.
 colorBtn.addEventListener('click', () => {
