@@ -7,8 +7,21 @@ const colorInput = document.querySelector('#colorInput');
 const addItemInput = document.querySelector('#addItemInput');
 const addItemBtn = document.querySelector('#addItemBtn');
 const removeItemBtn = document.querySelector('#removeItemBtn');
+const listItems = document.getElementsByTagName('li');
 
 myParagraph.title = 'A list description';
+// loop through each item in listItems
+for (let i = 0; i < listItems.length; i += 1) {
+  // event listens for mouse over and transforms text to capitals
+  listItems[i].addEventListener('mouseover', () => {
+    listItems[i].textContent = listItems[i].textContent.toUpperCase();
+  });
+
+  // event listens for mouse out and transforms text back to lowercase
+  listItems[i].addEventListener('mouseout', () => {
+    listItems[i].textContent = listItems[i].textContent.toLowerCase();
+  });
+}
 
 // change the heading text color.
 colorBtn.addEventListener('click', () => {
