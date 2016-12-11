@@ -1,6 +1,9 @@
 const toggleList = document.getElementById('toggleList');
 const listDiv = document.querySelector('.list');
 const listUl = listDiv.querySelector('ul');
+const list = listUl.children;
+const firstListItem = listUl.firstElementChild;
+const lastListItem = listUl.lastElementChild;
 const Header = document.getElementsByTagName('h1')[0];
 const HeadingTextInput = document.getElementById('headingTextInput');
 const HeadingTextBtn = document.getElementById('headingTextBtn');
@@ -11,6 +14,29 @@ const addItemInput = document.querySelector('#addItemInput');
 const addItemBtn = document.querySelector('#addItemBtn');
 
 myParagraph.title = 'A list description';
+
+// create buttons, classes and text for all list items
+function attachListItemBtns (li) {
+  let up = document.createElement('button');
+  let down = document.createElement('button');
+  let remove = document.createElement('button');
+  // props for up btn
+  up.textContent = 'Move Item Up';
+  up.className = 'up';
+  li.appendChild(up);
+  // props for down btn
+  down.textContent = 'Move Item Down';
+  down.className = 'down';
+  li.appendChild(down);
+  // props for remove btn
+  remove.textContent = 'Remove Item';
+  remove.className = 'remove';
+  li.appendChild(remove);
+}
+
+for (let i = 0; i < list.length; i += 1) {
+  attachListItemBtns(list[i]);
+}
 
 listUl.addEventListener('click', (event) => {
   // only target events with BUTTON tag.
@@ -27,9 +53,19 @@ listUl.addEventListener('click', (event) => {
       // move target list item up
       let prevLi = li.previousElementSibling;
       // if the element is already a first child, then the previousElement Sibling will be null.
-      // only works if there is a previous sibling
+      // only works if there is a previous sibling.
       if (prevLi) {
         ul.insertBefore(li, prevLi);
+      }
+    }
+    if (event.target.className === 'down') {
+      let li = event.target.parentNode;
+      let ul = li.parentNode;
+      // move target list item down
+      let nextLi = li.nextElementSibling;
+      // only move down if not the last child of ul.
+      if (nextLi) {
+        ul.insertBefore(nextLi, li);
       }
     }
   }
@@ -53,6 +89,8 @@ addItemBtn.addEventListener('click', () => {
   let li = document.createElement('li');
   // set the text content of the new li to the value from the addItemInput box.
   li.textContent = addItemInput.value;
+  // call function attachListItemBtns to append buttons to ul.
+  attachListItemBtns(li);
   // append the li to the dom tree to display it in the ul list.
   ul.appendChild(li);
   // clear the text from the addItemInput by setting it to an empty string.
