@@ -9,9 +9,15 @@
   <h1 id="myHeading">JavaScript and the DOM</h1>
   <p>Making a web page interactive</p>
 
-  <input type="text" id="colorInput">
+  <input type="text" id="colorInput" placeholder="purple, blue etc..">
 
-  <button id="colorBtn"> Change The Title</button>
+  <button id="colorBtn"> Change Color</button>
+
+  <br><br>
+
+  <input type="text" id="headingTextInput" placeholder="My Title ..">
+
+  <button id="headingTextBtn">Change Heading text</button>
   
   <button id='toggleList'>Hide List</button>
 
@@ -20,18 +26,45 @@
     <p class='description'>Things that are purple:</p>
 
     <ul>
-      <li class='notPurple'>water</li>
-      <li>grapes</li>
-      <li>amethyst</li>
-      <li class='notPurple'>fire truck</li>
-      <li>lavender</li>
-      <li>plums</li>
-      <li class='notPurple'>smurfs</li>
+      <li class='notPurple'>
+        water
+        <button class='up'>Up</button>
+        <button class=remove>Remove</button>
+      </li>
+      <li>
+        grapes
+        <button class='up'>Up</button>
+        <button class=remove>Remove</button>
+      </li>
+      <li>
+        amethyst
+        <button class='up'>Up</button>
+        <button class=remove>Remove</button>
+      </li>
+      <li class='notPurple'>
+        fire truck
+        <button class='up'>Up</button>
+        <button class=remove>Remove</button>
+      </li>
+      <li>
+        lavender
+        <button class='up'>Up</button>
+        <button class=remove>Remove</button>
+      </li>
+      <li>
+        purple
+        <button class='up'>Up</button>
+        <button class=remove>Remove</button>
+      </li>
+      <li class='notPurple'> 
+        smurfs
+        <button class='up'>Up</button>
+        <button class=remove>Remove</button>
+      </li>
     </ul>
 
     <input type="text" id="addItemInput">
     <button id="addItemBtn"> Add a new item</button>
-    <button id="removeItemBtn">Remove last item</button>
 
  </div> 
 </body>

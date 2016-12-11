@@ -1,41 +1,48 @@
 const toggleList = document.getElementById('toggleList');
 const listDiv = document.querySelector('.list');
+const listUl = listDiv.querySelector('ul');
 const Header = document.getElementsByTagName('h1')[0];
+const HeadingTextInput = document.getElementById('headingTextInput');
+const HeadingTextBtn = document.getElementById('headingTextBtn');
 const colorBtn = document.getElementById('colorBtn');
 const myParagraph = document.querySelector('p.description');
 const colorInput = document.querySelector('#colorInput');
 const addItemInput = document.querySelector('#addItemInput');
 const addItemBtn = document.querySelector('#addItemBtn');
-const removeItemBtn = document.querySelector('#removeItemBtn');
-const listItems = document.getElementsByTagName('li');
 
 myParagraph.title = 'A list description';
 
-listDiv.addEventListener('mouseover', (event) => {
-  // only target events with LI tag
-  if (event.target.tagName === 'LI') {
-    // event listens for mouse over and transforms text to capitals
-    event.target.textContent = event.target.textContent.toUpperCase();
+listUl.addEventListener('click', (event) => {
+  // only target events with BUTTON tag.
+  if (event.target.tagName === 'BUTTON') {
+    if (event.target.className === 'remove') {
+      let li = event.target.parentNode;
+      let ul = li.parentNode;
+      // remove the parent li from the ul.
+      ul.removeChild(li);
+    }
+    if (event.target.className === 'up') {
+      let li = event.target.parentNode;
+      let ul = li.parentNode;
+      // move target list item up
+      let prevLi = li.previousElementSibling;
+      // if the element is already a first child, then the previousElement Sibling will be null.
+      // only works if there is a previous sibling
+      if (prevLi) {
+        ul.insertBefore(li, prevLi);
+      }
+    }
   }
 });
-
-listDiv.addEventListener('mouseout', (event) => {
-  // only target events with LI tag
-  if (event.target.tagName === 'LI') {
-    // event listens for mouse out and transforms text back to lowercase
-    event.target.textContent = event.target.textContent.toLowerCase();
-  }
-});
-
-// document.addEventListener('click', (event) => {
-//   console.log(event.target);
-// });
-
 // change the heading text color.
 colorBtn.addEventListener('click', () => {
   Header.style.color = colorInput.value;
   Header.style.fontSize = '50px';
   colorInput.style.width = '200px';
+});
+// Change the header text
+HeadingTextBtn.addEventListener('click', () => {
+  Header.textContent = HeadingTextInput.value;
 });
 
 // add an item to the ul and appendChild to the dom.
@@ -50,15 +57,6 @@ addItemBtn.addEventListener('click', () => {
   ul.appendChild(li);
   // clear the text from the addItemInput by setting it to an empty string.
   addItemInput.value = '';
-});
-
-// remove last item from the list.
-removeItemBtn.addEventListener('click', () => {
-  let ul = document.getElementsByTagName('ul')[0];
-  // target the last child element.
-  let li = document.querySelector('li:last-child');
-  // remove the last child element from the dom.
-  ul.removeChild(li);
 });
 
 // toggle the list.
